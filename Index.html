@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First  Web Pages</title>
+    <style>
+        /*1) Centre the Heading */
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* 2) paragraph text  color to dark blue*/
+        p{
+            color: darkblue;
+            font-size: 16px;
+            line-height: 1.5;
+         }
+
+         /*3) 2px solid black border around the image */
+         img{
+             border: 2px solid black;
+             max-width: 100%;
+             height: auto;
+            }
+        /*4) Link  color red and green on hover*/
+            a{
+                 color: red;
+                 text-decoration: none;
+                }
+                a:hover{
+                color: green;
+                text-decoration: underline;    
+                }           
+    </style>
 </head>
 <body>
     <!--Heading-->
@@ -19,5 +49,12 @@
     <p>
         <a href="https://www.google.com/" target="_blank">Go to  Google</a>
     </p>
+    <!--Button-->
+    <button onclick="showMessage()"Click Me</button> 
+        <script>
+            function showMessage(){
+                alert("Hello from javaScript!");
+       }
+    </script> 
 </body>
 </html>
