@@ -21,7 +21,7 @@ body {
     border-radius:15px;
     width:100%;
     max-width:400px;
-    box-shadow:0 5px 12px black;
+    box-shadow:0 8px 20px  rgba(0, 0, 0, 0.10);
     
 }
 
@@ -88,20 +88,20 @@ button:hover{
     <div class="form-container">
         <h2>Signup Form</h2>
         <form id="signupForm">
-            <label>Full Name: </label>
+            <label for="fullname">Full Name: </label>
             <input type="text" id ="fullname" placeholder="Enter your full name">
 
             
-            <label>Email:</label>
+            <label for="email">Email:</label>
             <input type="email" id ="email" placeholder="Enter email">
 
 
-            <label>password: </label>
+            <label for="password">password: </label>
             <input type="password" id ="password" placeholder="Enter passsword">
 
 
-            <label>Confirm password: </label>
-            <input type="password" id = "confirmPassword" placeholder="Confirm passsword"> 
+            <label for= "confirmPassword">Confirm password:</label>
+            <input type="password" id = "confirmPassword" placeholder="Confirm password"> 
 
 
              <label>Gender: </label>
@@ -115,54 +115,70 @@ button:hover{
                 <input type="checkbox" id="terms"> I Agree To The Terms & Conditions
              </div>
 
-        <button type="submit">Signup</button>
+    <button type="submit">Signup</button>
     </form>
     </div>
 <script>
-    const termsCheckbox = document.getElementById('terms');
+    
     const submitButton = document.querySelector('button');
 
    
-    termsCheckbox.addEventListener('change', function() {
-        submitButton.style.display = this.checked ? 'block' : 'none';
-    });
-
-    document.getElementById('signupForm').addEventListener
-    ('submit', function(e) {
-        e.preventDefault(); 
-
+     function checkFormCompletion(){
        
         const fullname = document. getElementById('fullname').value.trim();
         const email = document. getElementById('email').value.trim();
         const password = document. getElementById('password').value;
         const confirmPassword = document. getElementById('confirmPassword').value;
-        const gender = document.QuerySelector('input[name="gender"]:checked');
-
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const termsChecked = document.getElementById('terms').checked;
        
-        if (!fullname || !email || !password || !confirmPassword || !gender) {
-            alert('Please fill all the fields.');
-            return;
+     
+         if (fullname || email || password || confirmPassword || gender || termsChecked) {
+            submitButton.style.display = 'block';
+        } else {
+            submitButton.style.display = 'none';
         }
+    }
+         document.querySelectorAll('#signupForm input').forEach(input => {
+        input.addEventListener('input', checkFormCompletion);
+        input.addEventListener('change', checkFormCompletion);
+    });
+
+
+     document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        
+        const fullname = document. getElementById('fullname').value.trim();
+        const email = document. getElementById('email').value.trim();
+        const password = document. getElementById('password').value;
+        const confirmPassword = document. getElementById('confirmPassword').value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+        
 
        
-        const emailPattern=/@[^]+\.[a-z]{3,5}/;
+        const emailPattern= /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/;
         if (!emailPattern.test(email)) {
             alert('Please Enter a Valid Email');
             return;
         }
 
        
-        if (password !== ConfirmPassword) {
+        if (password !== confirmPassword)
+         {
             alert('Passwords do not match' );
             return;
         }
 
        
-        console.log("Full Name:",   fullname);
-        console.log("Email:",   email);
-        console.log("Password:",   password);
-        console.log("Gender:",  gender.value);
+        console.log("Full Name:",  fullname);
+        console.log("Email:",  email);
+        console.log("Password:",  password);
+        console.log("Gender:", gender.value);
         alert('Signup Successful!');
+
+        this.reset();
+        submitButton.style.display = 'none'; 
     });
 </script>
 </body>
