@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>light bulb toggle</title>
+    <style>
+       
+   
+ body{
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+
+}
+.bulb{
+    position:relative;
+    width: 80px;
+    height: 80px;
+    background: gray;
+    border-radius: 50%;
+    transform:rotate(180deg);
+    margin: -50px auto 0;
+
+}
+
+ body.on .bulb{
+    background: white;
+    box-shadow: 0 0 30px white,0 0 60px white,0 0 90px white, 0 0 120px white;
+
+ }
+ .bulb::before{
+      content:'';
+      position: absolute;
+      top: -50px;
+      left: 22.5px;
+      width: 35px;
+      height: 80px;
+      background:gray;
+      border-top: 30px  solid rgb(38, 26, 1);
+      border-radius: 10px;
+
+ }
+
+ body.on .bulb::before{
+    background:white;
+ }
+
+ body.on .bulb::after{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background:yellow;
+    border-radius:50%;
+    filter: blur(40px);
+ }
+ .bulb span{
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+ }
+  .bulb span:nth-child(1){
+    top:-16px;
+    left: -4px;
+    transform: rotate(342deg);
+    border-bottom-right-radius: 40px;
+    box-shadow: 20px 20px 0 10px gray;
+}
+
+.bulb span:nth-child(2){
+    top: -16px;
+    right: -4px;
+    transform: rotate(17deg);
+    border-bottom-left-radius: 40px;
+    box-shadow:-20px 20px 0 10px gray;
+}
+
+body.on .bulb span:nth-child(1){
+    box-shadow: 20px 20px 0 10px white;
+
+}
+
+body.on  .bulb span:nth-child(2){
+    box-shadow: -20px 20px 0 10px white;
+}
+
+.butn{
+    display: inline-block;
+    position: relative;
+    margin-top: 16px auto 0;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius:75px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+}
+ </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="light">
+        <div class="bulb" role="img" aria-label="Light bulb off"> 
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+    <button type="button" class="butn" aria-pressed="false">Turn On</button>
+
+   </div>
+
+    <script>
+        let butn=document.querySelector('.butn');
+         let body=document.querySelector('body');
+         
+         butn.onclick=function() {
+            body.classList.toggle('on');
+         }
+         
+    </script>
+    </body>
+    </html>
