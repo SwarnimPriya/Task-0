@@ -70,6 +70,7 @@ button
     font-size: 16px;
     cursor: pointer;
     transition:background 0.3s;
+   
     
 }
 button:hover{
@@ -84,24 +85,24 @@ button:hover{
 </style>
 </head>
 <body>
-
+        
     <div class="form-container">
         <h2>Signup Form</h2>
         <form id="signupForm">
             <label for="fullname">Full Name: </label>
-            <input type="text" id ="fullname" placeholder="Enter your full name">
+            <input type="text" id="fullname" placeholder="Enter your full name">
 
             
             <label for="email">Email:</label>
-            <input type="email" id ="email" placeholder="Enter email">
+            <input type="email" id="email" placeholder="Enter email">
 
 
             <label for="password">password: </label>
-            <input type="password" id ="password" placeholder="Enter passsword">
+            <input type="password" id="password" placeholder="Enter password">
 
 
             <label for= "confirmPassword">Confirm password:</label>
-            <input type="password" id = "confirmPassword" placeholder="Confirm password"> 
+            <input type="password" id="confirmPassword" placeholder="Confirm password"> 
 
 
              <label>Gender: </label>
@@ -112,19 +113,19 @@ button:hover{
              </div>
              <label>Terms:</label>
              <div class="terms">
-                <input type="checkbox" id="terms"> I Agree To The Terms & Conditions
+                
+             <input type="checkbox" id="terms"> I Agree To The Terms & Conditions
              </div>
-
-    <button type="submit">Signup</button>
+       
+    <button type="submit" style="display:none;">Signup</button>
     </form>
     </div>
 <script>
     
     const submitButton = document.querySelector('button');
 
-   
      function checkFormCompletion(){
-       
+
         const fullname = document. getElementById('fullname').value.trim();
         const email = document. getElementById('email').value.trim();
         const password = document. getElementById('password').value;
@@ -133,7 +134,7 @@ button:hover{
         const termsChecked = document.getElementById('terms').checked;
        
      
-         if (fullname || email || password || confirmPassword || gender || termsChecked) {
+         if (fullname && email && password && confirmPassword && gender && termsChecked) {
             submitButton.style.display = 'block';
         } else {
             submitButton.style.display = 'none';
@@ -149,15 +150,15 @@ button:hover{
         e.preventDefault();
 
         
-        const fullname = document. getElementById('fullname').value.trim();
-        const email = document. getElementById('email').value.trim();
-        const password = document. getElementById('password').value;
-        const confirmPassword = document. getElementById('confirmPassword').value;
+        const fullname = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
         const gender = document.querySelector('input[name="gender"]:checked');
-        
+        const termsChecked = document.getElementById('terms').checked;
 
        
-        const emailPattern= /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/;
+        const emailPattern= /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if (!emailPattern.test(email)) {
             alert('Please Enter a Valid Email');
             return;
@@ -175,6 +176,8 @@ button:hover{
         console.log("Email:",  email);
         console.log("Password:",  password);
         console.log("Gender:", gender.value);
+
+
         alert('Signup Successful!');
 
         this.reset();
