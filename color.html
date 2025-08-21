@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Color</title>
+    <h1>Change Text Color</h1>
+    <style>
+        
+        body {
+            font-family:sans-serif;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color:beige;
+            margin:0px;
+        }
+
+        .container {
+            background-color:powderblue;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow:5px 5px gray;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+        
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor:pointer;
+            color:white;
+            
+        }
+
+        button:hover {
+            transform: scale(1.15);
+        }
+
+        #red-butn { background-color:red; }
+        #green-butn { background-color: green; }
+        #blue-butn { background-color:blue; }
+        #purple-butn { background-color:purple; }
+        #reset-butn { background-color: gray; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="color-heading">Change My Color!</h1>
+
+
+        <div class= "buttons">
+            <button id="red-butn"  onclick=" changeColor('red')"> Red</button>
+            <button id="green-butn"  onclick=" changeColor('green')"> Green</button>
+            <button id="blue-butn"  onclick=" changeColor('blue')"> Blue</button>
+            <button id="purple-butn"  onclick=" changeColor('purple')"> Purple</button>
+            <button id="reset-butn"  onclick=" changeColor('black')"> Reset</button>
+        </div>
+    </div>
+
+
+    <script>
+        function changeColor(newColor){
+            const heading = document.getElementById('color-heading');
+            heading.style.color = newColor;
+        }
+    </script>
+
+</body>
+</html>
